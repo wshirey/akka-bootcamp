@@ -1,13 +1,13 @@
-using System;
 using Akka.Actor;
+using System;
 
 namespace WinTail
 {
     /// <summary>
-    /// Actor responsible for reading FROM the console. 
+    /// Actor responsible for reading FROM the console.
     /// Also responsible for calling <see cref="ActorSystem.Shutdown"/>.
     /// </summary>
-    class ConsoleReaderActor : UntypedActor
+    internal class ConsoleReaderActor : UntypedActor
     {
         public const string ExitCommand = "exit";
         private IActorRef _consoleWriterActor;
@@ -30,10 +30,11 @@ namespace WinTail
 
             // send input to the console writer to process and print
             // YOU NEED TO FILL IN HERE
+            _consoleWriterActor.Tell(read);
 
             // continue reading messages from the console
             // YOU NEED TO FILL IN HERE
+            Self.Tell("continue");
         }
-
     }
 }
